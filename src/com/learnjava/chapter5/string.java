@@ -1,7 +1,8 @@
 package com.learnjava.chapter5;
-
 import java.util.Date;
 
+//Java中由双引号（" "）包围的都是字符串
+//声明字符串变量必须经过初始化才能使用
 public class string {
     public static void main(String[] args) {
         //String(char a[])
@@ -292,7 +293,100 @@ public class string {
         //\p{Print}     \\p{Print}              可打印字符
         //\p{Blank}     \\p{Blank}              空格或制表符
         //\p{Cntrl}     \\p{Cntrl}              控制字符
+        //在正则表达式中“.”代表任何一个字符，因此在正则表达式中如果想使用普通意义的点字符“.”，必须使用转义字符“\”。
+
+        //在正则表达式中可以使用方括号括起若干个字符来表示一个元字符，该元字符可代表方括号中的任何一个字符。
+        //例如，reg = "[abc]4"，这样字符串a4、b4、c4都是和正则表达式匹配的字符串。方括号元字符还可以为其他格式。
+        //[^456]：代表4、5、6之外的任何字符。
+        //[a-r]：代表a~r中的任何一个字母。
+        //[a-zA-Z]：可表示任意一个英文字母。
+        //[a-e[g-z]]：代表a~e或g~z中的任何一个字母（并运算）。
+        //[a-o&&[def]]：代表字母d、e、f（交运算）。
+        //[a-d&&[^bc]]：代表字母a、d（差运算）。
+
+        //在正则表达式中允许使用限定修饰符来限定元字符出现的次数。
+        //例如，“A*”代表A可在字符串中出现0次或多次。
+        //限定修饰符        意义        示例
+        //?                0次或1次     A?
+        //*                0次或多次    A*
+        //+                一次或多次   A+
+        //{n}              正好出现n次  A{2}
+        //{n,}             至少出现n次  A{3,}
+        //{n,m}            出现n~m次   A{2,6}
+
+        //实现使用正则表达式来判断指定的变量是否为合法的E-mail地址
+        String regex = "\\w+@\\w+(\\.\\w{2,3})*\\.\\w{2,3}";
+        String str17 = "aaa@";
+        String str18 = "aaaaa";
+        String str19 = "1111@111ffyu.dfg.com";
+        if (str17.matches(regex)){
+            System.out.println(str17+"是一个合法的E-mail地址格式");
+        } else if (str18.matches(regex)) {
+            System.out.println(str18+"是一个合法的E-mail地址格式");
+        } else if (str19.matches(regex)) {
+            System.out.println(str19+"是一个合法的E-mail地址格式");
+        }
+        //通常情况下E-mail的格式为“X@X.com.cn”。
+        //字符X表示任意的一个或多个字符，@为E-mail地址中的特有符号，符号@后还有一个或多个字符，之后是字符“.com”，也可能后面还有类似“.cn”的标记。
+        //总结E-mail地址的这些特点，因此可以书写正则表达式“\\w+@\\w+(\\.\\w{2,3})*\\.\\w{2,3}”来匹配E-mail地址。
+        //字符集“\\w”匹配任意字符，符号“+”表示字符可以出现1次或多次，表达式“(\\.\\w{2,3})*”表示形如“.com”格式的字符串可以出现0次或多次。
+        //而最后的表达式“\\.\\w{2,3}”用于匹配E-mail地址中的结尾字符，如“.com”。
+
+        //字符串生成器
+        //创建成功的字符串对象，其长度是固定的，内容不能被改变和编译。
+        //虽然使用“+”可以达到附加新字符或字符串的目的，但“+”会产生一个新的String实例，会在内存中创建新的字符串对象。
+        //如果重复地对字符串进行修改，将极大地增加系统开销。
+
+        //验证字符串操作和字符串生成器操作的效率
+        String str20 = "";
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            str20 += i;
+        }
+        long endTime = System.currentTimeMillis();
+        long timespent = endTime -startTime;
+        System.out.println("String消耗时间："+timespent);
+        StringBuilder builder = new StringBuilder("");
+        startTime = System.currentTimeMillis();
+        for (int j = 0; j < 10000; j++) {
+            builder.append(j);
+        }
+        endTime = System.currentTimeMillis();
+        timespent = endTime -startTime;
+        System.out.println("StringBuilder消耗时间："+timespent);
+
+        //新创建的StringBuilder对象初始容量是16个字符，可以自行指定初始长度。
+        //如果附加的字符超过可容纳的长度，则StringBuilder对象将自动增加长度以容纳被附加的字符。
+        //若要使用StringBuilder最后输出字符串结果，可使用toString()方法。
+        //利用StringBuilder类中的方法可动态地执行添加、删除和插入等字符串的编辑操作。
+
+        //append()方法
+        //用于向字符串生成器中追加内容
+        //append(content)
+        //content表示要追加到字符串生成器中的内容，可以是任何类型的数据或者其他对象
+
+        //insert(int offset, arg)方法
+        //用于向字符串生成器中的指定位置插入数据内容
+        //insert(int offset arg)
+        //offset：字符串生成器的位置。该参数必须大于等于0，且小于等于此序列的长度
+        //arg：将插入至字符串生成器的位置。该参数可以是任何的数据类型或其他对象
+        StringBuilder bd = new StringBuilder("hello ");
+        bd.insert(6,"world");
+        System.out.println(bd.toString());
+
+        //delete(int start , int end)方法
+        //移除此序列的子字符串中的字符
+        //delete(int start , int end)
+        //start：将要删除的字符串的起点位置
+        //end：将要删除的字符串的终点位
+        bd.delete(5,7);
+        System.out.println(bd);
+
+        //toUpperCase()方法
+        String str21 = "wtf";
+        System.out.println(str21.toUpperCase());
+
+        //toLowerCase()方法
+        System.out.println(str21.toUpperCase().toLowerCase());
     }
 }
-//Java中由双引号（" "）包围的都是字符串
-//声明字符串变量必须经过初始化才能使用
