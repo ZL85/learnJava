@@ -383,7 +383,7 @@ public class string {
         System.out.println(bd);
 
         //toUpperCase()方法
-        String str21 = "wtf";
+        String str21 = "artificial intelligence";
         System.out.println(str21.toUpperCase());
 
         //toLowerCase()方法
