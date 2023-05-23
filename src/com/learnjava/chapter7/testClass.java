@@ -1,6 +1,6 @@
 package com.learnjava.chapter7;
 
-public class learnclass {
+public class testClass {
     //类是对象的载体，它定义了对象所具有的功能
     //对象：属性（静态）、行为（动态）
     //面向对象程序设计：首先要将现实世界的实体抽象为对象，然后考虑这个对象具备的属性和行为
