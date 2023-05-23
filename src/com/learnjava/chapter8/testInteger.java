@@ -25,6 +25,13 @@ public class testInteger {
     //valueOf(String str)                Integer      返回保存指定的String值的Integer对象
     //parseInt(String str)               int          返回包含在由str指定的字符串中的数字相应的整型（int）值
 
+    //常量
+    //Integer类提供了以下4个常量：
+    //MAX_VALUE：表示int类型可取的最大值，即2^31-1
+    //MIN_VALUE：表示int类型可取的最小值，即-2^31
+    //SIZE：用来以二进制补码形式表示int值的位数
+    //TYPE：表示基本类型int的Class实例
+
     public static void main(String[] args) {
         String[] str = {"11","22","33","44","55"};
         int sum = 0;
@@ -37,11 +44,23 @@ public class testInteger {
 
         String str1 = Integer.toBinaryString(456);
         System.out.println("456的二进制表示为："+str1);
+
         String str2 = Integer.toOctalString(456);
         System.out.println("456的八进制表示为："+str2);
+
         String str3 = Integer.toString(456);
         System.out.println("456的十进制表示为："+str3);
+
         String str4 = Integer.toHexString(456);
         System.out.println("456的十六进制表示为："+str4);
+
+        int maxint = Integer.MAX_VALUE;
+        System.out.println("int类型可取的最大值是："+maxint);
+
+        int minint = Integer.MIN_VALUE;
+        System.out.println("int类型可取的最小值是："+minint);
+
+        int intsize = Integer.SIZE;
+        System.out.println("int类型的二进制位数是："+intsize);
     }
 }
