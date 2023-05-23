@@ -87,6 +87,32 @@ public class classAndObject {
         }
 
         //静态变量、常量和方法
-        //由static修饰的变量、常量和方法被称作静态变量、常量和方法。
+        //由static修饰的变量、常量和方法被称作静态变量、常量和方法
+        //有时，在处理问题时会需要两个类在同一个内存区域共享一个数据
+        //被声明为static的变量、常量和方法被称为静态成员
+        //静态成员属于类所有，区别于个别对象，可以在本类或其他类使用类名和“.”运算符调用静态成员
+        //类名.静态类成员
+        public class staticTest{
+            final static double PI = 3.1415;//静态常量
+            static int id;//静态变量
+
+            ////静态方法
+            public static void method1(){
+                //do sth;
+            }
+
+            public void method2(){
+                System.out.println(staticTest.PI);
+                System.out.println(staticTest.id);
+                staticTest.method1();
+            }
+
+            public static staticTest method3(){
+                method2();
+                return this;
+            }
+        }
+
+        //静态数据与静态方法的作用通常是为了提供共享数据或方法
     }
 }
