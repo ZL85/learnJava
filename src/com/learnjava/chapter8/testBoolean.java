@@ -19,10 +19,15 @@ public class testBoolean {
     //toString()                String               返回表示该boolean值的String对象
     //valueOf(String s)         boolean              返回一个用指定的字符串表示值的boolean值
 
+    //常量
+    //Boolean提供了以下3个常量：
+    //TRUE：对应基值true的Boolean对象
+    //FALSE：对应基值false的Boolean对象
+    //TYPE：基本类型boolean的Class对象
     public static void main(String[] args) {
-        Boolean b1 = new Boolean(true);
-        Boolean b2 = new Boolean("ok");
-
-
+        Boolean b1 = true;
+        Boolean b2 = false;
+        System.out.println("the value of b1 is "+b1.booleanValue());
+        System.out.println("the value of b2 is "+b2.booleanValue());
     }
 }
